@@ -10,7 +10,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Review {
-
     @Id
     private UUID id;
 
