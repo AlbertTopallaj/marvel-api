@@ -1,9 +1,6 @@
 package com.marvelapi.marvelapi.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,5 +18,7 @@ public class Review {
 
     private String description;
 
-    private Author author;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
 }
