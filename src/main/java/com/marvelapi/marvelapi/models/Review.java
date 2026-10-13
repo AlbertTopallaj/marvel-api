@@ -16,4 +16,10 @@ public class Review {
 
     @Id
     private UUID id;
+
+    private String title;
+
+    private String description;
+
+    private Author author;
 }
