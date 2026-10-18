@@ -10,7 +10,9 @@ import java.util.UUID;
 @Getter
 @Setter
 public class Review {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String title;
@@ -20,4 +22,8 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 }
