@@ -4,9 +4,9 @@ import com.marvelapi.marvelapi.dtos.ReviewRequest;
 import com.marvelapi.marvelapi.models.Review;
 import com.marvelapi.marvelapi.services.ReviewService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/review")
@@ -16,8 +16,13 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @PostMapping("/create")
-    public Review createReview(ReviewRequest reviewRequest) {
+    public Review createReview(@RequestBody ReviewRequest reviewRequest) {
         return reviewService.createReview(reviewRequest);
+    }
+
+    @PatchMapping("/update/{reviewId}")
+    public Review updateReview(@RequestBody ReviewRequest reviewRequest, @PathVariable UUID reviewId) {
+        return reviewService.updateReview(reviewId, reviewRequest);
     }
 
 }
