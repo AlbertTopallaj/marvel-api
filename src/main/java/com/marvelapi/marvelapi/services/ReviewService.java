@@ -35,4 +35,8 @@ public class ReviewService {
 
         return review;
     }
+
+    public void deleteReview(UUID reviewId){
+        reviewRepository.deleteById(reviewId);
+    }
 }
