@@ -1,5 +1,6 @@
 package com.marvelapi.marvelapi.services;
 
+import com.marvelapi.marvelapi.dtos.MovieRequest;
 import com.marvelapi.marvelapi.models.Movie;
 import com.marvelapi.marvelapi.repositories.MovieRepository;
 import lombok.AllArgsConstructor;
@@ -13,5 +14,12 @@ public class MovieService {
 
     public Movie addMovie(MovieRequest request) {
         Movie movie = new Movie();
+
+        movie.setTitle(request.getTitle());
+        movie.setYear(request.getYear());
+
+        movieRepository.save(movie);
+
+        return movie;
     }
 }
