@@ -6,6 +6,7 @@ import com.marvelapi.marvelapi.repositories.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -38,5 +39,9 @@ public class ReviewService {
 
     public void deleteReview(UUID reviewId){
         reviewRepository.deleteById(reviewId);
+    }
+
+    public List<Review> getReviewsByMovie(UUID movieId){
+        return reviewRepository.findByMovieId(movieId);
     }
 }
