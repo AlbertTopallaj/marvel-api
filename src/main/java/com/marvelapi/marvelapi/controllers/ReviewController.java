@@ -6,6 +6,7 @@
     import lombok.AllArgsConstructor;
     import org.springframework.web.bind.annotation.*;
 
+    import java.util.List;
     import java.util.UUID;
 
     @RestController
@@ -28,6 +29,11 @@
         @DeleteMapping("/delete/{reviewId}")
         public void deleteReview(@PathVariable UUID reviewId) {
             reviewService.deleteReview(reviewId);
+        }
+
+        @GetMapping("/{movieId}/reviews")
+        public List<Review> getReviews(@PathVariable UUID movieId) {
+            return reviewService.getReviewsByMovie(movieId);
         }
 
     }
