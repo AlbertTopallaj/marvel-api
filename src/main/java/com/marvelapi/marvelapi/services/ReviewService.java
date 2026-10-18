@@ -15,12 +15,23 @@ public class ReviewService {
     public Review createReview(ReviewRequest reviewRequest) {
         Review review = new Review();
 
+        review.setTitle(reviewRequest.getTitle());
+        review.setDescription(reviewRequest.getDescription());
+
+        reviewRepository.save(review);
+
+        return review;
+
+    }
+
+    public Review updateReview(ReviewRequest reviewRequest) {
+        Review review = new Review();
+
         reviewRequest.setTitle(reviewRequest.getTitle());
         reviewRequest.setDescription(reviewRequest.getDescription());
 
         reviewRepository.save(review);
 
         return review;
-
     }
 }
