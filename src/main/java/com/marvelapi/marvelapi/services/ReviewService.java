@@ -23,7 +23,6 @@ public class ReviewService {
         reviewRepository.save(review);
 
         return review;
-
     }
 
     public Review updateReview(UUID reviewId, ReviewRequest reviewRequest) {
