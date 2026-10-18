@@ -6,6 +6,8 @@ import com.marvelapi.marvelapi.repositories.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class MovieService {
@@ -21,5 +23,9 @@ public class MovieService {
         movieRepository.save(movie);
 
         return movie;
+    }
+
+    public List<Movie> getMovies(){
+        return movieRepository.findAll();
     }
 }
