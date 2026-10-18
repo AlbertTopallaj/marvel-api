@@ -23,6 +23,6 @@ public class MovieController {
 
     @GetMapping("/find")
     public List<Movie> findMovies() {
-        return movieService
+        return movieService.getMovies();
     }
 }
