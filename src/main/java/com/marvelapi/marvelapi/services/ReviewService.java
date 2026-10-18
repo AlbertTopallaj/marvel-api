@@ -6,6 +6,8 @@ import com.marvelapi.marvelapi.repositories.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class ReviewService {
@@ -24,11 +26,11 @@ public class ReviewService {
 
     }
 
-    public Review updateReview(ReviewRequest reviewRequest) {
-        Review review = new Review();
+    public Review updateReview(UUID reviewId, ReviewRequest reviewRequest) {
+        Review review = reviewRepository.findById(reviewId).orElseThrow();
 
-        reviewRequest.setTitle(reviewRequest.getTitle());
-        reviewRequest.setDescription(reviewRequest.getDescription());
+        review.setTitle(reviewRequest.getTitle());
+        review.setDescription(reviewRequest.getDescription());
 
         reviewRepository.save(review);
 
