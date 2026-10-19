@@ -17,7 +17,7 @@ public class UserController {
 
     @PostMapping("/register")
     public User createUser(@RequestBody UserRequest request) {
-        return userService.createUser(request);
+        return userService.registerUser(request);
     }
 
     @DeleteMapping("/delete/{userId}")
