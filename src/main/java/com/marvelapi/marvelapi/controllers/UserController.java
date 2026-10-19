@@ -15,7 +15,7 @@ import java.util.UUID;
 public class UserController {
     private UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping("/register")
     public User createUser(@RequestBody UserRequest request) {
         return userService.createUser(request);
     }
