@@ -7,18 +7,26 @@ import io.jsonwebtoken.Jwts;
 import lombok.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class JWTService {
 
     private final Algorithm algorithm;
     private final JWTVerifier verifier;
 
-    public JWTService(@Value("${jwt.secrete}") String secret){
+    public JWTService(@Value("${jwt.secret}") String secret){
         this.algorithm = Algorithm.HMAC256(secret);
         this.verifier = JWT.require(algorithm)
                 .withIssuer("auth0")
                 .build();
     }
+
+    public String generateToken(UUID userId){
+
+    }
+
+
 
 
 }
