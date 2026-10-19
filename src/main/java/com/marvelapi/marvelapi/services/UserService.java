@@ -39,7 +39,7 @@ public class UserService {
             throw new RuntimeException("Fel lösenord");
         }
 
-        return jWTService.generateToken(user);
+        return jWTService.generateToken(user.getId());
     }
 
     public void deleteUser(UUID userId){
