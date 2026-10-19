@@ -1,14 +1,22 @@
 package com.marvelapi.marvelapi.security;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.marvelapi.marvelapi.models.User;
 import com.marvelapi.marvelapi.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -32,7 +40,26 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         String jwtToken = authenticationHeader.substring("Bearer ".length());
 
         UUID userId;
+        try {
+            userId = jwtService.verifyToken(jwtToken);
+        } catch (JWTVerificationException exception) {
+            response.setStatus(401);
+            return;
+        }
 
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            response.setStatus(401);
+            return;
+        }
+
+        User user = userOptional.get();
+
+        SecurityContextHolder
+                .getContext()
+                .setAuthentication(new UsernamePasswordAuthenticationToken(
+                        user, user.getPassword(), new ArrayList<>()
+                ));
+        filterChain.doFilter(request, response);
     }
-    )
 }
