@@ -20,6 +20,11 @@ public class UserController {
         return userService.registerUser(request);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody UserRequest request) {
+        return ResponseEntity.ok(userService.loginUser(request));
+    }
+
     @DeleteMapping("/delete/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID userId) {
         userService.deleteUser(userId);
