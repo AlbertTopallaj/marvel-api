@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class AuthenticationFilter extends OncePerRequestFilter {
@@ -28,6 +29,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
+        String jwtToken = authenticationHeader.substring("Bearer ".length());
+
+        UUID userId;
 
     }
     )
