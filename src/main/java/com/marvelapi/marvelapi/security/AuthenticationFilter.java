@@ -5,4 +5,5 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @RequiredArgsConstructor
 public class AuthenticationFilter extends OncePerRequestFilter {
+    private final JWTService jwtService;
 }
