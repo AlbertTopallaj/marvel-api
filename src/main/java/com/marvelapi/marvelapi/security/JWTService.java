@@ -7,6 +7,8 @@ import io.jsonwebtoken.Jwts;
 import lombok.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @Service
@@ -23,7 +25,12 @@ public class JWTService {
     }
 
     public String generateToken(UUID userId){
-
+        return JWT.create()
+                .withIssuer("auth0")
+                .withIssuedAt(Instant.now())
+                .withExpiresAt(Instant.now().plus(1, ChronoUnit.DAYS))
+                .withSubject(userId.toString())
+                .sign(algorithm);
     }
 
 
