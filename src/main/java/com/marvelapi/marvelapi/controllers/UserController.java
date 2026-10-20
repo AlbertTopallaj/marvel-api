@@ -1,6 +1,7 @@
 package com.marvelapi.marvelapi.controllers;
 
 import com.marvelapi.marvelapi.dtos.UserRequest;
+import com.marvelapi.marvelapi.dtos.UserResponse;
 import com.marvelapi.marvelapi.models.User;
 import com.marvelapi.marvelapi.services.UserService;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> loginUser(@RequestBody UserRequest request) {
         return ResponseEntity.ok(userService.loginUser(request));
     }
 

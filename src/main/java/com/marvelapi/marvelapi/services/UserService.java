@@ -1,6 +1,7 @@
 package com.marvelapi.marvelapi.services;
 
 import com.marvelapi.marvelapi.dtos.UserRequest;
+import com.marvelapi.marvelapi.dtos.UserResponse;
 import com.marvelapi.marvelapi.models.User;
 import com.marvelapi.marvelapi.repositories.UserRepository;
 import com.marvelapi.marvelapi.security.JWTService;
@@ -31,7 +32,7 @@ public class UserService {
         return user;
     }
 
-    public String loginUser(UserRequest request){
+    public UserResponse loginUser(UserRequest request){
         User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Användaren finns inte"));
 
@@ -39,7 +40,11 @@ public class UserService {
             throw new RuntimeException("Fel lösenord");
         }
 
-        return jWTService.generateToken(user.getId());
+        UserResponse response = new UserResponse();
+        response.setToken(jWTService.generateToken(user.getId()));
+        response.setUsername(user.getUsername());
+
+        return response;
     }
 
     public void deleteUser(UUID userId){
