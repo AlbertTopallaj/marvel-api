@@ -16,11 +16,6 @@ public class MovieController {
 
     private MovieService movieService;
 
-    @PostMapping("/add")
-    public Movie addMovie(@RequestBody MovieRequest movieRequest) {
-        return movieService.addMovie(movieRequest);
-    }
-
     @GetMapping("/find")
     public List<Movie> findMovies() {
         return movieService.getMovies();
