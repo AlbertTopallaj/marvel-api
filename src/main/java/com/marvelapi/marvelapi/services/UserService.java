@@ -41,6 +41,7 @@ public class UserService {
         }
 
         UserResponse response = new UserResponse();
+        response.setId(user.getId());
         response.setToken(jWTService.generateToken(user.getId()));
         response.setUsername(user.getUsername());
 
