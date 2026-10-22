@@ -20,8 +20,6 @@ public class UserService {
     private UserRepository userRepository;
 
     public User registerUser(UserRequest request) {
-        User user = new User();
-
         if (request.getUsername() == null || request.getUsername().isBlank()) {
             throw new IllegalArgumentException("Användarnamn saknas.");
         }
@@ -30,6 +28,7 @@ public class UserService {
             throw new IllegalArgumentException("Lösenord saknas");
         }
 
+        User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(
                 passwordEncoder.encode(request.getPassword())
