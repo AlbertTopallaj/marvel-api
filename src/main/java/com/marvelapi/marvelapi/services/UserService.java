@@ -40,6 +40,14 @@ public class UserService {
     }
 
     public UserResponse loginUser(UserRequest request){
+        if (request.getUsername() == null || request.getUsername().isBlank()) {
+            throw new IllegalArgumentException("Användarnamn saknas.");
+        }
+
+        if (request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Lösenord saknas");
+        }
+
         User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Användaren finns inte"));
 
