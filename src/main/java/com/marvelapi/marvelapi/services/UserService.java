@@ -22,6 +22,10 @@ public class UserService {
     public User registerUser(UserRequest request) {
         User user = new User();
 
+        if (request.getUsername() == null || request.getUsername().isBlank()) {
+            throw new IllegalArgumentException("Användarnamn saknas.");
+        }
+
         user.setUsername(request.getUsername());
         user.setPassword(
                 passwordEncoder.encode(request.getPassword())
