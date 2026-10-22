@@ -26,6 +26,10 @@ public class UserService {
             throw new IllegalArgumentException("Användarnamn saknas.");
         }
 
+        if (request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Lösenord saknas");
+        }
+
         user.setUsername(request.getUsername());
         user.setPassword(
                 passwordEncoder.encode(request.getPassword())
