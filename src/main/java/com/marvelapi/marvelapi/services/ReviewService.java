@@ -16,6 +16,12 @@ public class ReviewService {
     private ReviewRepository reviewRepository;
 
     public Review createReview(ReviewRequest reviewRequest) {
+        if (reviewRequest.getTitle() == null || reviewRequest.getTitle().isBlank()) {
+            throw new IllegalArgumentException("Titel saknas");
+        }
+        if (reviewRequest.getDescription() == null || reviewRequest.getDescription().isBlank()){
+            throw new IllegalArgumentException("Beskrivning saknas");
+        }
         Review review = new Review();
 
         review.setTitle(reviewRequest.getTitle());
@@ -27,6 +33,13 @@ public class ReviewService {
     }
 
     public Review updateReview(UUID reviewId, ReviewRequest reviewRequest) {
+        if (reviewRequest.getTitle() == null || reviewRequest.getTitle().isBlank()) {
+            throw new IllegalArgumentException("Titel saknas");
+        }
+        if (reviewRequest.getDescription() == null || reviewRequest.getDescription().isBlank()){
+            throw new IllegalArgumentException("Beskrivning saknas");
+        }
+
         Review review = reviewRepository.findById(reviewId).orElseThrow();
 
         review.setTitle(reviewRequest.getTitle());

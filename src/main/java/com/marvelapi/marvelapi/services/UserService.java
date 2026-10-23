@@ -20,8 +20,19 @@ public class UserService {
     private UserRepository userRepository;
 
     public User registerUser(UserRequest request) {
-        User user = new User();
+        if (request.getUsername() == null || request.getUsername().isBlank()) {
+            throw new IllegalArgumentException("Användarnamn saknas.");
+        }
 
+        if (request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Lösenord saknas");
+        }
+
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("Användarnamn är upptaget");
+        }
+
+        User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(
                 passwordEncoder.encode(request.getPassword())
@@ -33,6 +44,14 @@ public class UserService {
     }
 
     public UserResponse loginUser(UserRequest request){
+        if (request.getUsername() == null || request.getUsername().isBlank()) {
+            throw new IllegalArgumentException("Användarnamn saknas.");
+        }
+
+        if (request.getPassword() == null || request.getPassword().isBlank()) {
+            throw new IllegalArgumentException("Lösenord saknas");
+        }
+
         User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("Användaren finns inte"));
 
