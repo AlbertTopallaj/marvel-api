@@ -31,4 +31,8 @@ public class UserController {
         userService.deleteUser(userId);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/validate"){
+
+    }
 }
