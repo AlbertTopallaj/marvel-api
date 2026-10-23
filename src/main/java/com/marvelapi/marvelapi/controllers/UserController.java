@@ -32,7 +32,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/validate"){
-
-    }
+       @GetMapping("/validate")
+       public ResponseEntity<Void> validateToken(){
+            return ResponseEntity.ok().build();
+        }
 }
