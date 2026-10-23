@@ -28,6 +28,10 @@ public class UserService {
             throw new IllegalArgumentException("Lösenord saknas");
         }
 
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new IllegalArgumentException("Användarnamn är upptaget");
+        }
+
         User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(
