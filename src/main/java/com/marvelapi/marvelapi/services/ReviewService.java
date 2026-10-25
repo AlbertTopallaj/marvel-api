@@ -71,4 +71,8 @@ public class ReviewService {
     public List<Review> getReviewsByMovie(UUID movieId){
         return reviewRepository.findByMovie_Id(movieId);
     }
+
+    public List<Review> getReviewsByUser(UUID userId) {
+        return reviewRepository.findByAuthor_Id(userId);
+    }
 }

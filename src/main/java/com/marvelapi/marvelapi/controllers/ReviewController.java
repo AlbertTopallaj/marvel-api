@@ -36,4 +36,8 @@
             return reviewService.getReviewsByMovie(movieId);
         }
 
+        @GetMapping("/get/{userId}")
+        public List<Review> getReviewsByUser(@PathVariable UUID userId) {
+            return reviewService.getReviewsByUser(userId);
+        }
     }
