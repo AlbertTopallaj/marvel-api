@@ -21,4 +21,5 @@ Marvel API is created for the purpose to be the main API for the marvel-mobileap
 
 ## Authentication and Authorization
 
+## Limitations 
 
