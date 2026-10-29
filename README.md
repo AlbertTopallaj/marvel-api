@@ -18,3 +18,7 @@ Marvel API is created for the purpose to be the main API for the marvel-mobileap
 - PATCH review/{reviewId}
 - GET review/{userId}
 - GET movies/find
+
+## Authentication and Authorization
+
+
